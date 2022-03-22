@@ -1,10 +1,10 @@
-enum HttpStatus {
+enum StatusCode {
     OK = 200,
     INTERNAL_SERVER_ERROR = 500
 }
 
-interface Status {
-    status: HttpStatus
+interface HttpStatus {
+    status: StatusCode
 }
 
 enum HttpMethod {
@@ -13,8 +13,8 @@ enum HttpMethod {
 }
 
 interface Handlers {
-    next: (v: RequestObject) => Status,
-    error: (e: Error) => Status,
+    next: (value: RequestObject) => HttpStatus,
+    error: (error: Error) => HttpStatus,
     complete: () => void,
 }
 
@@ -143,11 +143,12 @@ const requestsMock = [
 
 const handleRequest = (request: RequestObject) => {
     // handling of request
-    return {status: HttpStatus.OK};
+    return {status: StatusCode.OK};
 };
+
 const handleError = (error: Error) => {
     // handling of error
-    return {status: HttpStatus.INTERNAL_SERVER_ERROR};
+    return {status: StatusCode.INTERNAL_SERVER_ERROR};
 };
 
 const handleComplete = () => console.log('complete');

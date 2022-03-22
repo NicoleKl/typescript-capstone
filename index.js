@@ -1,9 +1,9 @@
 "use strict";
-var HttpStatus;
-(function (HttpStatus) {
-    HttpStatus[HttpStatus["OK"] = 200] = "OK";
-    HttpStatus[HttpStatus["INTERNAL_SERVER_ERROR"] = 500] = "INTERNAL_SERVER_ERROR";
-})(HttpStatus || (HttpStatus = {}));
+var StatusCode;
+(function (StatusCode) {
+    StatusCode[StatusCode["OK"] = 200] = "OK";
+    StatusCode[StatusCode["INTERNAL_SERVER_ERROR"] = 500] = "INTERNAL_SERVER_ERROR";
+})(StatusCode || (StatusCode = {}));
 var HttpMethod;
 (function (HttpMethod) {
     HttpMethod[HttpMethod["GET"] = 0] = "GET";
@@ -94,11 +94,11 @@ const requestsMock = [
 ];
 const handleRequest = (request) => {
     // handling of request
-    return { status: HttpStatus.OK };
+    return { status: StatusCode.OK };
 };
 const handleError = (error) => {
     // handling of error
-    return { status: HttpStatus.INTERNAL_SERVER_ERROR };
+    return { status: StatusCode.INTERNAL_SERVER_ERROR };
 };
 const handleComplete = () => console.log('complete');
 const requests$ = Observable.from(requestsMock);
